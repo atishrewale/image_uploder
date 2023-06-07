@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'myapp/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'myapp/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'myapp/owl.carouse.min.css' %}">
+    <title>Image Uploader </title>
+</head>
+    <div class='container'>
+        <div class="py-5 text-center  text-white" style="background-color:peru;">
+            <h1>Upload Inmage </h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" class="btn btn-danger" value="Upload">
+            </form>
+        </div>
+        <div class="row">
+            {% for img in image %}
+                <div class="col-sm-4">
+                    <div class="card m-2 ">
+                        <img src="{{img.photo.url}}" alt="">
+                        <div class="card-footer">
+                            <small class="text-muted">{{img.date}}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+<body>
+    <script src="{% static 'myapp/bootstrap.bundle.js'%}"></script>
+    <script src="{% static 'myapp/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'myapp/all.min.js'%}"></script>
+</body>
+</html>
